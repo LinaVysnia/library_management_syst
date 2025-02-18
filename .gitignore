@@ -2,7 +2,10 @@
 book_data.json
 reader_data.json
 librarian_data.json
+
 my_secrets.py
+
+alembic.ini
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
