@@ -6,6 +6,7 @@ librarian_data.json
 my_secrets.py
 
 alembic.ini
+versions/*.mako
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
