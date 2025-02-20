@@ -10,11 +10,14 @@ from UI.login_page_UI import run_login_UI
 
 load_dotenv()  # Load environment variables from .env
 
-database_url = os.environ.get("DATABASE_URL")
-if database_url is None:
-    raise ValueError("DATABASE_URL environment variable not set. Please create a .env file and set it.")
+DATABASE_URL = os.environ.get("DATABASE_URL")
 
-engine = create_engine(database_url)  # Create the engine *after* loading .env
+try:
+    engine = create_engine(DATABASE_URL)
+    with engine.connect() as connection:
+        print("Database connection successful!")
+except Exception as e:
+    print(f"Database connection failed: {e}")
 
 
 #will create some books if book_data.json or reader_data.json files doen't exist yet
