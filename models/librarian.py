@@ -14,13 +14,17 @@ class Librarian(Base):
 
     password_hash:Mapped[str] = mapped_column(String(128))
 
-    is_deleted: Mapped[bool] = mapped_column(Boolean, default=0)
+    is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
     added_on : Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
+    def __init__(self, username: str, psw : str, is_deleted = False):
+        self.username = username
+        self.password_hash = self.set_password(psw)
+        self.is_deleted = is_deleted
 
     def set_password(self, password):
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()) #I've heard salt makes everything better
-        self.password_hash = hashed_password.decode('utf-8')
+        return hashed_password.decode('utf-8')
 
     def check_password(self, password):
         hashed_input = bcrypt.hashpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
