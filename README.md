@@ -68,10 +68,10 @@ This project uses MySQL and is tailored for Windows. Follow these steps to set u
 
 ## To-Do List ✅
 
-- [ ] Initialise migrations 
+- [X] Initialise migrations 
     * Setup models
-    *Setup inits
-    *Setup db connections
+    * Setup inits
+    * Setup db connections
 - [ ] Sort out the structure
 - [ ] Migrate from using .json for storage to using a DB
 - [ ] ~~Write a nicer~~  Update readme with instructions and pretty pictures
