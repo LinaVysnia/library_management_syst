@@ -14,8 +14,8 @@ class Book(Base):
     author: Mapped[str] = mapped_column(String(255))
     publishing_year : Mapped[int] = mapped_column(Integer)
     genre: Mapped[str] = mapped_column(String(255))
-    is_borrowed: Mapped[bool] = mapped_column(Boolean, default=0)
-    is_deleted: Mapped[bool] = mapped_column(Boolean, default=0)
+    is_borrowed: Mapped[bool] = mapped_column(Boolean, default=False)
+    is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
     added_on : Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 #might not need these methods, check later
