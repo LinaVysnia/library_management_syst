@@ -31,18 +31,18 @@ class Book(Base):
         return value_comparison
     
     @staticmethod
-    def _validate_publication_year(year):
+    def _validate_publishing_year(year):
         current_year = datetime.now().year
         if not isinstance(year, int):
-            raise ValueError("Publication year must be an integer.")
+            raise ValueError("publishing year must be an integer.")
         if year < 0 or year > current_year:
-            raise ValueError(f"Publication year must be between 0 and {current_year}.")
+            raise ValueError(f"publishing year must be between 0 and {current_year}.")
         return year
 
 @event.listens_for(Book, 'before_insert')
 def before_book_insert(mapper, connection, target):
-    target.publication_year = Book._validate_publication_year(target.publication_year)
+    target.publishing_year = Book._validate_publishing_year(target.publishing_year)
 
 @event.listens_for(Book, 'before_update')
 def before_book_update(mapper, connection, target):
-    target.publication_year = Book._validate_publication_year(target.publication_year)
+    target.publishing_year = Book._validate_publishing_year(target.publishing_year)
