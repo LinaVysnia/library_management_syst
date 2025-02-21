@@ -4,4 +4,7 @@ from data.create_dummy_data import create_dummy_data
 #will create some books if book_data.json or reader_data.json files doen't exist yet
 create_dummy_data()
 
-# run_login_UI()
+run_login_UI()
+
+
+#maybe use match for UI? Remember to make it work and then have a look
