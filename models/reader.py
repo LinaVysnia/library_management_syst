@@ -10,7 +10,7 @@ class Reader(Base):
     __tablename__ = "readers"
 
     id:Mapped[int] = mapped_column(primary_key=True)
-    card_id_hash : Mapped[str] = mapped_column(String(55), unique=True)
+    card_id_hash : Mapped[str] = mapped_column(String(128), unique=True)
     name:Mapped[str] = mapped_column(String(255))
     surname:Mapped[str] = mapped_column(String(255))
     dob:Mapped[date] = mapped_column(Date)
@@ -19,14 +19,13 @@ class Reader(Base):
     is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
     added_on : Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), server_default=func.now()) 
 
-    def __init__(self, card_id: str, name : str, surname : str, dob : date, address : str, phone_num : str, is_deleted = False):
+    def __init__(self, card_id: str, name : str, surname : str, dob : date, address : str, phone_num : str):
         self.card_id_hash = self.set_card_id(card_id) 
         self.name = name
-        self.surname - surname
+        self.surname = surname
         self.dob = dob
         self.address = address
         self.phone_num = phone_num
-        self.is_deleted = is_deleted
 
     def __str__(self):
         return f"{self.name} {self.surname} {self.id}"
@@ -41,11 +40,11 @@ class Reader(Base):
 
     @staticmethod
     def _validate_dob(dob):
-        now = datetime.now()
+        now = datetime.today().date()
         if not isinstance(dob, date):
-            raise ValueError("Datre of birth must be a valid date")
-        if dob < 0 or dob > now:
-            raise ValueError(f"Publication year must be between 0 and {now}.")
+            raise ValueError("Date of birth must be a valid date")
+        if dob.year < 0 or dob > now:
+            raise ValueError(f"Date of birth must be between 0 and {now}.")
         return dob
 
 @event.listens_for(Reader, 'before_insert')
