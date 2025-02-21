@@ -2,9 +2,9 @@ This project is for practising database management with ORM using SQLAlchemy
 
 ## Database Setup
 
-This project uses MySQL and is tailored for Windows. Follow these steps to set up the database:
+This project uses MySQL and the guide is tailored for Windows. Follow these steps to set up the database:
 
-0. Use a Windows machine
+0. **Use a Windows machine**
 
 1. **Install MySQL:**
     * Download and install the MySQL Community Server from [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/).
@@ -27,11 +27,9 @@ This project uses MySQL and is tailored for Windows. Follow these steps to set u
 3. **Set Up Environment Variables:**
     This project requires the `DATABASE_URL` environment variable to be set.
     
-    Keep it simple, just use `set` command in the command prompt:
-    ```
-    set DATABASE_URL="mysql+mysqlconnector://myuser:mypassword@localhost:3306/my_project_db"
-    ```
-    * Replace `DATABASE_URL` with your database link, using the same unique credentials from creating the database.
+    Keep it simple, just use .env.template file I've prepared:
+
+    * Replace DATABASE_URL with your database link, using the same unique credentials from creating the database.
 
 4. **Configure Alembic:**
 
@@ -73,7 +71,7 @@ This project uses MySQL and is tailored for Windows. Follow these steps to set u
     * Setup inits
     * Setup db connections
 - [ ] Sort out the structure
-- [ ] Migrate from using .json for storage to using a DB
+- [X] Migrate from using .json for storage to using a DB
 - [ ] ~~Write a nicer~~  Update readme with instructions and pretty pictures
 
 ## Would-Be-Nice List ✅
