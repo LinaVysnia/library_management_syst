@@ -1,8 +1,8 @@
 from logic import get_available_books, print_readers, get_readers_overdue_books, print_available_books, borrow_book
 from datetime import datetime, timedelta
 from const import days_before_overdue
-from classes.reader import Reader
-from classes.book import Book
+from models.reader import Reader
+from models.book import Book
 
 def run_book_borrowing_UI(book_obj_list : list , reader_obj_list : list):
     amount_of_readers = len(reader_obj_list)

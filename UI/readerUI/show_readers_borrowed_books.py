@@ -1,5 +1,5 @@
 from logic import get_readers_overdue_books, get_borrowed_books, load_books_from_file
-from classes.reader import Reader
+from models.reader import Reader
 from datetime import datetime, timedelta
 from const import days_before_overdue
 

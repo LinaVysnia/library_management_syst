@@ -1,11 +1,11 @@
 from logic import *
-from classes.librarian import Librarian
+from models.librarian import Librarian
 from UI.book_search_UI import run_book_search_UI
-from UI.register_new_book_UI import run_register_new_book_UI
-from UI.old_book_deletion_UI import run_book_deletion_UI
-from UI.book_borrowing_UI import run_book_borrowing_UI
-from UI.add_reader_UI import run_add_reader_UI
-from UI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
+from UI.librarianUI.register_new_book_UI import run_register_new_book_UI
+from UI.librarianUI.old_book_deletion_UI import run_book_deletion_UI
+from UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
+from UI.librarianUI.add_reader_UI import run_add_reader_UI
+from UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
 
 def run_librarians_main_UI(librarian : Librarian):
 

@@ -1,6 +1,6 @@
 from logic import get_all_card_IDs, load_readers_from_file
-from classes.reader import Reader
-from UI.readers_main_UI import run_readers_main_UI
+from models.reader import Reader
+from UI.readerUI.readers_main_UI import run_readers_main_UI
 
 def run_reader_login_UI():
     all_readers = load_readers_from_file()

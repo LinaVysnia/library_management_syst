@@ -1,8 +1,8 @@
 import json
 from const import *
-from classes.book import Book
-from classes.reader import Reader
-from classes.librarian import Librarian
+from models.book import Book
+from models.reader import Reader
+from models.librarian import Librarian
 from datetime import datetime, timedelta
 import random
 

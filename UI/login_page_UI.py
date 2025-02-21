@@ -1,5 +1,5 @@
-from UI.librarian_login_UI import run_librarian_login_UI
-from UI.reader_login_UI import run_reader_login_UI
+from UI.librarianUI.librarian_login_UI import run_librarian_login_UI
+from UI.readerUI.reader_login_UI import run_reader_login_UI
 
 def run_login_UI():
     print("*" * 80)

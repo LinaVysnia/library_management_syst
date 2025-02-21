@@ -1,8 +1,8 @@
-from classes.reader import Reader
+from models.reader import Reader
 from UI.book_search_UI import run_book_search_UI
-from UI.reader_book_borrowing_UI import run_reader_book_borrowing_UI
-from UI.show_readers_borrowed_books import run_show_borrowed_books
-from UI.reader_return_borrowed_UI import run_return_book_reader_UI
+from UI.readerUI.reader_book_borrowing_UI import run_reader_book_borrowing_UI
+from UI.readerUI.show_readers_borrowed_books import run_show_borrowed_books
+from UI.readerUI.reader_return_borrowed_UI import run_return_book_reader_UI
 from logic import *
 
 def run_readers_main_UI(reader : Reader):
