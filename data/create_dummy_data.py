@@ -21,20 +21,18 @@ def create_book_data(dummy_books):
 
     print(f"No books were found. Initialising dummy data")
 
-    with Session() as session:
-
-        for book in dummy_books:
-            try:
-                dum_book = Book(
-                    title = book["title"],
-                    author = book["author"],
-                    publishing_year = book["publishing_year"],
-                    genre = book["genre"],
-                )
-                stmt = session.add(dum_book)
-            except Exception:
-                print(f"Book addition failed! Book in question: \n{book}")
-                print(Exception)
+    for book in dummy_books:
+        try:
+            dum_book = Book(
+                title = book["title"],
+                author = book["author"],
+                publishing_year = book["publishing_year"],
+                genre = book["genre"],
+            )
+            stmt = session.add(dum_book)
+        except Exception as e:
+            print(f"Book addition failed! Book in question: \n{book}")
+            print(e)
 
     session.commit()
 
@@ -52,22 +50,20 @@ def create_reader_data(dummy_readers):
 
     print(f"No readers were found. Initialising dummy data")
 
-    with Session() as session:
-
-        for reader in dummy_readers:
-            try:
-                dum_reader = Reader(
-                    card_id_hash = reader["cardID"],
-                    name = reader["name"],
-                    surname = reader["surname"],
-                    dob = datetime.strptime(reader["dob"], "%Y %m %d").date(),
-                    address = reader["address"],
-                    phone_num = reader["phone_num"]
-                )
-                stmt = session.add(dum_reader)
-            except Exception:
-                print(f"Reader addition failed! Reader in question: \n{reader}")
-                print(Exception)
+    for reader in dummy_readers:
+        try:
+            dum_reader = Reader(
+                card_id = reader["cardID"],
+                name = reader["name"],
+                surname = reader["surname"],
+                dob = datetime.strptime(reader["dob"], "%Y %m %d").date(),
+                address = reader["address"],
+                phone_num = reader["phone_num"]
+            )
+            stmt = session.add(dum_reader)
+        except Exception as e:
+            print(f"Reader addition failed! Reader in question: \n{reader}")
+            print(e)
 
     session.commit()
 
@@ -85,21 +81,18 @@ def create_librarian_data(dummy_librarians):
 
     print(f"No librarians were found. Initialising dummy data")
 
+    for lib in dummy_librarians:
+        try:
+            dum_librarian = Librarian(
+                username = lib["username"],
+                psw = lib["password"]
+            )
+            stmt = session.add(dum_librarian)
+        except Exception as e:
+            print(f"Librarian addition failed! Librarian in question: \n{lib}")
+            print(e)
 
-    with Session() as session:
-
-        for lib in dummy_librarians:
-            try:
-                dum_librarian = Librarian(
-                    username = lib["username"],
-                    psw = lib["password"]
-                )
-                stmt = session.add(dum_librarian)
-            except Exception:
-                print(f"Librarian addition failed! Librarian in question: \n{lib}")
-                print(Exception)
-
-    session.commit()
+        session.commit()
 
 
 def create_dummy_data():
