@@ -17,10 +17,9 @@ class Librarian(Base):
     is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
     added_on : Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
-    def __init__(self, username: str, psw : str, is_deleted = False):
+    def __init__(self, username: str, psw : str):
         self.username = username
         self.password_hash = self.set_password(psw)
-        self.is_deleted = is_deleted
 
     def set_password(self, password):
         hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()) #I've heard salt makes everything better
