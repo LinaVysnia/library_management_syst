@@ -1,11 +1,11 @@
-from logic import *
+from services.book_service import get_all_books, print_book_inventory
 from models.librarian import Librarian
-from UI.book_search_UI import run_book_search_UI
-from UI.librarianUI.register_new_book_UI import run_register_new_book_UI
-from UI.librarianUI.old_book_deletion_UI import run_book_deletion_UI
-from UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
-from UI.librarianUI.add_reader_UI import run_add_reader_UI
-from UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
+# from UI.book_search_UI import run_book_search_UI
+# from UI.librarianUI.register_new_book_UI import run_register_new_book_UI
+# from UI.librarianUI.old_book_deletion_UI import run_book_deletion_UI
+# from UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
+# from UI.librarianUI.add_reader_UI import run_add_reader_UI
+# from UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
 
 def run_librarians_main_UI(librarian : Librarian):
 
@@ -40,50 +40,50 @@ def run_librarians_main_UI(librarian : Librarian):
                     
             print("*" * 80)
             print("Viewing library's book inventory\n")
-            print_inventory(load_books_from_file())
+            print_book_inventory()
             input("Press enter to return ")
 
-        elif user_input == "2":
-            print("*" * 80)
-            print("Viewing overdue books\n")
-            print_overdue_books(load_books_from_file())
-            input("Press enter to return ")
+        # elif user_input == "2":
+        #     print("*" * 80)
+        #     print("Viewing overdue books\n")
+        #     print_overdue_books(load_books_from_file())
+        #     input("Press enter to return ")
 
-        elif user_input == "3":
-            print("*" * 80)
-            print("Viewing borrowed books\n")
-            print_borrowed_books(load_books_from_file()) 
-            input("Press enter to return ")
+        # elif user_input == "3":
+        #     print("*" * 80)
+        #     print("Viewing borrowed books\n")
+        #     print_borrowed_books(load_books_from_file()) 
+        #     input("Press enter to return ")
         
-        elif user_input == "4":
-            print("*" * 80)
-            print("Viewing available books\n")
-            print_available_books(load_books_from_file()) 
-            input("Press enter to return ")
+        # elif user_input == "4":
+        #     print("*" * 80)
+        #     print("Viewing available books\n")
+        #     print_available_books(load_books_from_file()) 
+        #     input("Press enter to return ")
 
-        elif user_input == "5":
-            run_book_search_UI(load_books_from_file())
+        # elif user_input == "5":
+        #     run_book_search_UI(load_books_from_file())
 
-        elif user_input == "6":
-            run_register_new_book_UI(load_books_from_file())
+        # elif user_input == "6":
+        #     run_register_new_book_UI(load_books_from_file())
 
-        elif user_input == "7":
-            run_book_deletion_UI(load_books_from_file())
+        # elif user_input == "7":
+        #     run_book_deletion_UI(load_books_from_file())
 
-        elif user_input == "8":
-            run_book_borrowing_UI(load_books_from_file(), load_readers_from_file())
+        # elif user_input == "8":
+        #     run_book_borrowing_UI(load_books_from_file(), load_readers_from_file())
 
-        elif user_input == "9":
-            run_return_book_librarian_UI()
+        # elif user_input == "9":
+        #     run_return_book_librarian_UI()
 
-        elif user_input == "10":
-            print("*" * 80)
-            print("Viewing all registered users\n")
-            print_readers(load_readers_from_file())
-            input("Press enter to return ")
+        # elif user_input == "10":
+        #     print("*" * 80)
+        #     print("Viewing all registered users\n")
+        #     print_readers(load_readers_from_file())
+        #     input("Press enter to return ")
 
-        elif user_input == "11":
-            run_add_reader_UI(load_readers_from_file())
+        # elif user_input == "11":
+        #     run_add_reader_UI(load_readers_from_file())
 
         elif user_input.lower() == "r" or user_input.lower() == "return":
             print("Logging out and returning to the login page")

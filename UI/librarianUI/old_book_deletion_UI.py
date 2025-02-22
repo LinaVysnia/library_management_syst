@@ -1,4 +1,4 @@
-from logic import delete_books_older_than
+from services.logic import delete_books_older_than
 from datetime import datetime
 
 def run_book_deletion_UI(book_obj_list):

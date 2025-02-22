@@ -1,5 +1,5 @@
-from logic import return_book, get_borrowed_books, load_books_from_file
-from const import days_before_overdue
+from services.logic import return_book, get_borrowed_books, load_books_from_file
+from core.const import days_before_overdue
 from datetime import timedelta
 
 def run_return_book_librarian_UI():

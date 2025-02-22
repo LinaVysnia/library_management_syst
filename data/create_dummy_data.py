@@ -1,10 +1,8 @@
-import os
 from sqlalchemy import select
 from db import Session
 from models.book import Book
 from models.reader import Reader
 from models.librarian import Librarian
-from const import book_data_path, reader_data_path, librarian_data_path
 from datetime import datetime
 
 def create_book_data(dummy_books):

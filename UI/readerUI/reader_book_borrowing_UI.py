@@ -1,6 +1,6 @@
-from logic import get_available_books, print_readers, get_readers_overdue_books, print_available_books, borrow_book
+from services.logic import get_available_books, print_readers, get_readers_overdue_books, print_available_books, borrow_book
 from datetime import datetime, timedelta
-from const import days_before_overdue
+from core.const import days_before_overdue
 from models.reader import Reader
 from models.book import Book
 

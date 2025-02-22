@@ -1,4 +1,4 @@
-from logic import get_all_card_IDs, load_readers_from_file
+from services.logic import get_all_card_IDs, load_readers_from_file
 from models.reader import Reader
 from UI.readerUI.readers_main_UI import run_readers_main_UI
 

@@ -1,4 +1,4 @@
-from logic import add_book
+from services.logic import add_book
 from datetime import date
 
 def run_register_new_book_UI(book_obj_list):

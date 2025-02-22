@@ -1,7 +1,7 @@
-from logic import get_readers_overdue_books, get_borrowed_books, load_books_from_file
+from services.logic import get_readers_overdue_books, get_borrowed_books, load_books_from_file
 from models.reader import Reader
 from datetime import datetime, timedelta
-from const import days_before_overdue
+from core.const import days_before_overdue
 
 def run_show_borrowed_books(reader : Reader):
     print("*" * 80)

@@ -1,4 +1,4 @@
-from logic import get_books_by_title, get_books_by_author, get_books_by_publishing_year, get_books_by_genre
+from services.logic import get_books_by_title, get_books_by_author, get_books_by_publishing_year, get_books_by_genre
 
 def run_book_search_UI(book_ibj_list):
 

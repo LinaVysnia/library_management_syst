@@ -1,5 +1,5 @@
 from datetime import datetime, date
-from logic import add_reader, generateID, get_all_card_IDs
+from services.logic import add_reader, generateID, get_all_card_IDs
 
 def run_add_reader_UI(reader_obj_list : list):
 
