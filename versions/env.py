@@ -10,6 +10,7 @@ from models.base import Base
 from models.librarian import Librarian
 from models.reader import Reader
 from models.book import Book
+from models.history import History
 
 import os
 from dotenv import load_dotenv
