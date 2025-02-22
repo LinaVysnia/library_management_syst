@@ -70,11 +70,16 @@ This project uses MySQL and the guide is tailored for Windows. Follow these step
     * Setup models
     * Setup inits
     * Setup db connections
+- [X] Add tests
 - [ ] Sort out the structure
 - [X] Migrate from using .json for storage to using a DB
 - [ ] ~~Write a nicer~~  Update readme with instructions and pretty pictures
 
 ## Would-Be-Nice List ✅
 - [ ] Add a nicer UI
+    * Hide password inputs
+- [ ] Tailor the app to work with a larger amount of data
+    * Setup fetching only small amount of data
+    * Add pagination
 - [ ] Make an adroid version
 - [ ] Give an option to add a book from image (use google books API maybe)
