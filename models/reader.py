@@ -1,9 +1,11 @@
-from sqlalchemy import  Boolean, Integer, String, event, DateTime, Date
-from typing import Optional
-from sqlalchemy.orm import Mapped, mapped_column
-from models.base import Base
-from datetime import datetime, date
+from sqlalchemy import  Boolean, String, event, DateTime, Date
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
+from typing import Optional
+from models.base import Base
+from models.history import History
+
+from datetime import datetime, date
 import bcrypt
 
 class Reader(Base):
@@ -18,6 +20,9 @@ class Reader(Base):
     phone_num : Mapped[str] = mapped_column(String(55))
     is_deleted: Mapped[bool] = mapped_column(Boolean, default=False)
     added_on : Mapped[Optional[datetime]] = mapped_column(DateTime(timezone=True), server_default=func.now()) 
+
+    borrowing_history:Mapped[list["History"]] = relationship("History", back_populates="reader")
+
 
     def __init__(self, card_id: str, name : str, surname : str, dob : date, address : str, phone_num : str):
         self.card_id_hash = self.set_card_id(card_id) 
