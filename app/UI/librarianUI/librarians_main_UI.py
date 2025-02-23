@@ -1,9 +1,9 @@
-from app.services.book_service import print_book_inventory
+from app.services.book_service import *
 from app.models.librarian import Librarian
 # from app.UI.book_search_UI import run_book_search_UI
 # from app.UI.librarianUI.register_new_book_UI import run_register_new_book_UI
 # from app.UI.librarianUI.old_book_deletion_UI import run_book_deletion_UI
-# from app.UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
+from app.UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
 # from app.UI.librarianUI.add_reader_UI import run_add_reader_UI
 # from app.UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
 
@@ -22,7 +22,7 @@ def run_librarians_main_UI(librarian : Librarian):
     1. View library's book inventory
     2. View overdue books
     3. View borrowed books
-    4. View books present in the library
+    4. View books available for booking
     5. Search for a book
     6. Register a new book to library's inventory
     7. Delete old books from the system
@@ -43,23 +43,23 @@ def run_librarians_main_UI(librarian : Librarian):
             print_book_inventory()
             input("Press enter to return ")
 
-        # elif user_input == "2":
-        #     print("*" * 80)
-        #     print("Viewing overdue books\n")
-        #     print_overdue_books(load_books_from_file())
-        #     input("Press enter to return ")
+        elif user_input == "2":
+            print("*" * 80)
+            print("Viewing overdue books\n")
+            print_overdue_books()
+            input("Press enter to return ")
 
-        # elif user_input == "3":
-        #     print("*" * 80)
-        #     print("Viewing borrowed books\n")
-        #     print_borrowed_books(load_books_from_file()) 
-        #     input("Press enter to return ")
+        elif user_input == "3":
+            print("*" * 80)
+            print("Viewing borrowed books\n")
+            print_borrowed_books() 
+            input("Press enter to return ")
         
-        # elif user_input == "4":
-        #     print("*" * 80)
-        #     print("Viewing available books\n")
-        #     print_available_books(load_books_from_file()) 
-        #     input("Press enter to return ")
+        elif user_input == "4":
+            print("*" * 80)
+            print("Viewing available books\n")
+            print_available_books() 
+            input("Press enter to return ")
 
         # elif user_input == "5":
         #     run_book_search_UI(load_books_from_file())
@@ -71,7 +71,7 @@ def run_librarians_main_UI(librarian : Librarian):
         #     run_book_deletion_UI(load_books_from_file())
 
         # elif user_input == "8":
-        #     run_book_borrowing_UI(load_books_from_file(), load_readers_from_file())
+        #     run_book_borrowing_UI()
 
         # elif user_input == "9":
         #     run_return_book_librarian_UI()
