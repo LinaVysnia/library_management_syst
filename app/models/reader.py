@@ -33,7 +33,7 @@ class Reader(Base):
         self.phone_num = phone_num
 
     def __str__(self):
-        return f"{self.name} {self.surname} {self.id}"
+        return f"{self.name[:15]:<15} {self.surname[:20]:<20} {self.id:<7}"
 
     def set_card_id(self, card_id):
         hashed_card_id = bcrypt.hashpw(card_id.encode('utf-8'), bcrypt.gensalt()) #I've heard salt makes everything better
