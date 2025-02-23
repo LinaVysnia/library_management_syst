@@ -1,43 +1,51 @@
-from app.services.logic import get_available_books, print_readers, get_readers_overdue_books, print_available_books, borrow_book
+from app.services.book_service import get_available_books, get_overdue_books, print_available_books, borrow_book
+from app.services.reader_service import get_all_readers, print_readers
 from datetime import datetime, timedelta
 from app.core.const import days_before_overdue
 from app.models.reader import Reader
 from app.models.book import Book
 
-def run_book_borrowing_UI(book_obj_list : list , reader_obj_list : list):
-    amount_of_readers = len(reader_obj_list)
-    available_books =get_available_books(book_obj_list)
+def run_book_borrowing_UI():
+    readers = get_all_readers()
+    available_books = get_available_books()
 
-    if len(available_books) > 0 and amount_of_readers > 0:
+    if available_books and readers:
 
         #letting user to chose which reader borrows a book
-        print_readers(reader_obj_list)
+        print_readers()
 
         while True:
-            user_reader_index_choice = (input(f"Which reader (1 to {amount_of_readers}) wants to borrow a book?: ")).strip()
+            reader_index = (input(f"Which reader (1 to {len(readers)}) wants to borrow a book?: ")).strip()
             try:
-                user_reader_index_choice = int(user_reader_index_choice) -1
-                if user_reader_index_choice <= (amount_of_readers-1) and user_reader_index_choice >= 0:
-                    chosen_readers_overdue_books = get_readers_overdue_books(book_obj_list, reader_obj_list[user_reader_index_choice])
-                    if len(chosen_readers_overdue_books) == 0: 
-                        break
-                    else:
-                        print(f"This reader can't borrow because they have {len(chosen_readers_overdue_books)} book(s) overdue:\n")
-                        for i, book in enumerate(chosen_readers_overdue_books, 1):
+                reader_index = int(reader_index) -1
+
+                if reader_index <= (len(readers))-1 and reader_index >= 0:
+                    reader = readers[reader_index]
+                    overdue_books = get_overdue_books(reader.id)
+
+                    if overdue_books:
+                        print(f"This reader can't borrow because they have {len(overdue_books)} book(s) overdue:\n")
+                        for i, book in enumerate(overdue_books, 1):
                             print(f"{i}. {book}")
                             print(f"Overdue by {((datetime.now() - book.history[-1][0]).days) - days_before_overdue} days\n")
-                        print("Please inform the reader and cho0se somebody else\n")
-                else: 
-                    print(f"This reader index isn't available. Please make a choice from 1 to {amount_of_readers}\n")
-            except:
+                        print("Please inform the reader and choose somebody else\n")
+                        continue
+                    
+                    break
+                        
+                else:
+                    print(f"This reader index isn't available. Please make a choice from 1 to {len(readers)}\n")
+                    
+            except Exception as ex:
                 print("Your choice isn't valid, pease enter it again\n")
+                print(ex)
 
-        chosen_reader : Reader = reader_obj_list[user_reader_index_choice]
+        chosen_reader : Reader = readers[reader_index]
 
-        print(f"Reader chosen: {chosen_reader}\n")
+        print(f"Reader chosen: {chosen_reader.name} {chosen_reader.surname} reader no. {chosen_reader.id}\n")
 
         #letting user to pick a book from a list
-        print_available_books(book_obj_list)
+        print_available_books()
         
         while True:
             user_book_index_choice = (input(f"Which book (1 to {len(available_books)}) would {chosen_reader.name} like to borrow?: ")).strip()
@@ -50,11 +58,10 @@ def run_book_borrowing_UI(book_obj_list : list , reader_obj_list : list):
                 print("Your choice isn't valid, pease enter it again\n")
 
         chosen_book : Book = available_books[user_book_index_choice]
-        reader_cardID = chosen_reader.cardID
 
-        borrow_book(book_obj_list, chosen_book, reader_cardID)
+        borrow_book(chosen_book.id, chosen_reader.id)
 
-        print(f"{chosen_reader} has successfully borrowed {chosen_book}")
+        print(f"{chosen_reader.name} {chosen_reader.surname} reader no. {chosen_reader.id} has successfully borrowed {chosen_book.title} by {chosen_book.author} ({chosen_book.publishing_year})")
         return_date = (datetime.today() + timedelta(days = days_before_overdue)).strftime("%Y %m %d, %H:%M")
         print(f"it has to be returned by {return_date}\n")
     else:
