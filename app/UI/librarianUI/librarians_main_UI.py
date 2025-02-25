@@ -3,7 +3,7 @@ from app.services.reader_service import *
 from app.models.librarian import Librarian
 #from app.UI.book_search_UI import run_book_search_UI
 # from app.UI.librarianUI.register_new_book_UI import run_register_new_book_UI
-# from app.UI.librarianUI.old_book_deletion_UI import run_book_deletion_UI
+from app.UI.librarianUI.book_deletion_UI import run_book_deletion_UI
 from app.UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
 # from app.UI.librarianUI.add_reader_UI import run_add_reader_UI
 # from app.UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
@@ -26,7 +26,7 @@ def run_librarians_main_UI(librarian : Librarian):
     4. View books available for booking
     5. Search for a book
     6. Register a new book to library's inventory
-    7. Delete old books from the system
+    7. Remove books from the system
     8. Lend a book to a reader
     9. Return a book
     10. View all registered readers
@@ -68,8 +68,8 @@ def run_librarians_main_UI(librarian : Librarian):
         # elif user_input == "6":
         #     run_register_new_book_UI(load_books_from_file())
 
-        # elif user_input == "7":
-        #     run_book_deletion_UI(load_books_from_file())
+        elif user_input == "7":
+            run_book_deletion_UI()
 
         elif user_input == "8":
             run_book_borrowing_UI()
