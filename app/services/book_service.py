@@ -97,6 +97,7 @@ def print_overdue_books():
     print("There are no overdue books in the library\n")
 
 def borrow_book(book_id, reader_id, due_date = None):
+
     with Session() as session:
         book_query = select(Book).where(Book.id == book_id).where(Book.is_borrowed == False)
         book = session.scalars(book_query).one_or_none()
@@ -112,3 +113,16 @@ def borrow_book(book_id, reader_id, due_date = None):
         session.add(history)
         
         session.commit()
+
+def remove_book(book : Book):
+    with Session() as session:
+        try:
+            book_to_delete = session.get(Book, book.id)
+            book_to_delete.is_deleted = True
+            session.commit()
+        except Exception as ex:
+            print (f"Warning: Book with ID {book.id} not found in the database in this session. Cannot remove.")
+            print(ex)
+
+    #should I handle history entry if the book is deleted? maybe default right join is enought to handle this?
+
