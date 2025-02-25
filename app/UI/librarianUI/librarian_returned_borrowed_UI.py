@@ -1,40 +1,44 @@
-from app.services.logic import return_book, get_borrowed_books, load_books_from_file
+from app.services.book_service import return_book, get_borrowed_books
 from app.core.const import days_before_overdue
 from datetime import timedelta
 
 def run_return_book_librarian_UI():
     print("*" * 80)
     print("Returning borrowed books\n")
-    all_books = load_books_from_file()
-    all_borrowed_books = get_borrowed_books(all_books)
+    borrowed_books = get_borrowed_books()
 
-    if len(all_borrowed_books) == 0:
-        print("There aren't any borrowed books yet\n")
-    
-    else:
+    if not borrowed_books :
+        print("There aren't any borrowed books at the moment\n")
+        return
         
-        print(f"There are currently {len(all_borrowed_books)} books borrowed:\n")
-        for i, book in enumerate(all_borrowed_books, 1):
-            print(f"{i}. {book}")
-            return_date = (book.history[-1][0] + timedelta(days = days_before_overdue)).strftime("%Y %m %d, %H:%M")
-            print(f"it has to be returned by {return_date}\n")
-            print()
+    print(f"There are currently {len(borrowed_books)} books borrowed:\n")
+    print(f"{'Title':^30}{'Author':^20}{'Publishing year:'}")
+    for i, book, history in enumerate(borrowed_books, 1):
+        print(f"{i}. {book}")
+        return_date = (book.history[-1][0] + timedelta(days = days_before_overdue)).strftime("%Y %m %d, %H:%M")
+        print(f"it has to be returned by {return_date}\n")
+        print()
 
-        while True:
-            book_index = input(f"Which book (1 to {len(all_borrowed_books)}) would you like to return?: ")
+    while True:
+        book_index = input(f"Which book (1 to {len(borrowed_books)}) would you like to return? Enter 'q' to quit.")
+        book_index =  book_index.strip().lower()
 
-            try:
-                if int(book_index) >= 1 and int(book_index) <= len(all_borrowed_books):
-                    book_index = int(book_index) - 1
-                    chosen_book = all_borrowed_books[book_index]
-                    break
-                else:
-                    raise Exception
-            except:
-                print(f"Your choice isn't valid. Please enter a number between 1 and {len(all_borrowed_books)}")
+        if book_index == "q" or book_index == "quit":
+            print("Quitting book return.")
+            return
+        
+        try:
+            int(book_index) >= 1 and int(book_index) <= len(borrowed_books)
+            book_index = int(book_index) - 1
+            chosen_book_with_history = borrowed_books[book_index]
+            break
 
-        return_book(chosen_book)
+        except:
+            print(f"Your choice isn't valid. Please enter a number between 1 and {len(borrowed_books)}")
+            continue
 
-        print(f"You have successfully returned {chosen_book}")
+    return_book(chosen_book_with_history)
 
-    input("Press enter to return ")
+    print(f"You have successfully returned {chosen_book_with_history}")
+
+input("Press enter to return ")
