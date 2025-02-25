@@ -28,7 +28,6 @@ def get_available_books() -> list[Book]:
         stmt = select(Book).where(Book.is_borrowed == False).where(Book.is_deleted == False)
         available_books = session.execute(stmt).scalars().all()
         return available_books
-        available_books = get_available_books(book_obj_list)
 
 def print_available_books():
 
@@ -124,5 +123,18 @@ def remove_book(book : Book):
             print (f"Warning: Book with ID {book.id} not found in the database in this session. Cannot remove.")
             print(ex)
 
-    #should I handle history entry if the book is deleted? maybe default right join is enought to handle this?
-
+def return_book(book_history: tuple[Book, History]):
+    book, history = book_history
+    with Session() as session:
+        try:
+            #test and see if I could fit these in one statement
+            book_obj = session.get(Book, book.id)
+            history_obj = session.get(History, history.id)
+            if book_obj:
+                book_obj.is_borrowed = False
+            if history_obj:
+                history_obj.returned_on = datetime.now()
+            session.commit()
+        except Exception as ex:
+            print (f"Warning: Book with ID {book.id} not found in the database in this session. Cannot return.")
+            print(ex)
