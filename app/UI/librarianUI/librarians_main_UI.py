@@ -6,7 +6,7 @@ from app.models.librarian import Librarian
 from app.UI.librarianUI.book_deletion_UI import run_book_deletion_UI
 from app.UI.librarianUI.book_borrowing_UI import run_book_borrowing_UI
 # from app.UI.librarianUI.add_reader_UI import run_add_reader_UI
-# from app.UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
+from app.UI.librarianUI.librarian_returned_borrowed_UI import run_return_book_librarian_UI
 
 def run_librarians_main_UI(librarian : Librarian):
 
@@ -70,12 +70,15 @@ def run_librarians_main_UI(librarian : Librarian):
 
         elif user_input == "7":
             run_book_deletion_UI()
+            input("Press enter to return ")
 
         elif user_input == "8":
             run_book_borrowing_UI()
+            input("Press enter to return ")
 
-        # elif user_input == "9":
-        #     run_return_book_librarian_UI()
+        elif user_input == "9":
+            run_return_book_librarian_UI()
+            input("Press enter to return ")
 
         elif user_input == "10":
             print("*" * 80)
