@@ -22,17 +22,12 @@ class Book(Base):
 
     borrowing_history:Mapped[list["History"]] = relationship("History", back_populates="book")
 
-#might not need these methods, check later
-    def __repr__(self):
+    def print_unformatted(self):
         return f"{self.title} by {self.author} ({self.publishing_year})" #return to this and check if  actually used this
     
     def __str__(self):
         return f"{self.title[:30]:<30} {self.author[:20]:<20} {self.publishing_year:^6}"
     
-    def __eq__(self, other): #this MUST be updated every time class parameters change.. bit inefficient
-        value_comparison = self.title == other.title and self.author == other.author and self.publishing_year == other.publishing_year and self.genre == other.genre and self.is_borrowed == other.is_borrowed and self.history == other.history
-
-        return value_comparison
     
     @staticmethod
     def _validate_publishing_year(year):
