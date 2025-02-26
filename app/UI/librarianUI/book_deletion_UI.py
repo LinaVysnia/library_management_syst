@@ -35,7 +35,7 @@ def run_book_deletion_UI():
     chosen_book = books[user_input - 1]
 
     print(f"Are you sere you want to delete this book?")
-    print(f"{chosen_book.title} by {chosen_book.author} ({chosen_book.publishing_year})")
+    print(f"{chosen_book.print_unformatted()}")
     if chosen_book.is_borrowed:
         print("WARNING: This book is currently with a reader!")
 
@@ -49,7 +49,7 @@ Enter \"q\" to quit removing books
     user_choice = input("Your choice: ").lower().strip()
     if user_choice == "y" or user_choice == "yes":
         remove_book(chosen_book)
-        print(f"{chosen_book.title} by {chosen_book.author} ({chosen_book.publishing_year}) REMOVED from the library")
+        print(f"{chosen_book.print_unformatted()} REMOVED from the library")
 
     elif user_choice == "n" or user_choice ==  "no":
         print("Deletion cancelled")

@@ -61,7 +61,7 @@ def run_book_borrowing_UI():
 
         borrow_book(chosen_book.id, chosen_reader.id)
 
-        print(f"{chosen_reader.name} {chosen_reader.surname} reader no. {chosen_reader.id} has successfully borrowed {chosen_book.title} by {chosen_book.author} ({chosen_book.publishing_year})")
+        print(f"{chosen_reader.name} {chosen_reader.surname} reader no. {chosen_reader.id} has successfully borrowed {chosen_book.print_unformatted()})")
         return_date = (datetime.today() + timedelta(days = days_before_overdue)).strftime("%Y %m %d, %H:%M")
         print(f"it has to be returned by {return_date}\n")
     else:
